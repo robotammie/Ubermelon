@@ -1,23 +1,38 @@
 all_melons = {
     "Honeydew": {
         "price": 0.99,
-        "seedless": True
+        "seedless": True,
+        "flesh color": "Green",
+        "rind color": "Green",
+        "weight": 5.0
         },
     "Crenshaw": {
         "price": 2.00,
-        "seedless": True
+        "seedless": True,
+        "flesh color": "Orange",
+        "rind color": "Green",
+        "weight": 5.0
         },
     "Crane": {
         "price": 2.50,
-        "seedless": False
+        "seedless": False,
+        "flesh color": "Orange",
+        "rind color": "Green",
+        "weight": 5.0
         },
     "Casaba": {
         "price": 2.50,
-        "seedless": False
+        "seedless": False,
+        "flesh color": "Yellow",
+        "rind color": "Yellow",
+        "weight": 5.0
         },
     "Cantaloupe": {
         "price": 0.99,
-        "seedless": False
+        "seedless": False,
+        "flesh color": "Orange",
+        "rind color": "Green",
+        "weight": 5.0
         }
 }
 
