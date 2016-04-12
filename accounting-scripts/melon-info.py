@@ -18,23 +18,13 @@ def print_melon(melons):
 
         print "{}s {} seeds and are ${:.2f}".format(name, seeds, price)
 
-print_melon(all_melons)
 
+def add_attribute(attribute):
+    """Inable seamless addition of new attributes to our master melon list"""
 
+    print "Please enter new data for each melon:"
 
+    for melon in all_melons:
+        new_fact = raw_input("{}: ".format(melon))
 
-
-
-
-
-
-# def print_melon(name, seedless, price):
-#     have_or_have_not = 'have'
-#     if seedless:
-#         have_or_have_not = 'do not have'
-
-#     print "{}s {} seeds and are ${:.2f}".format(name, have_or_have_not, price)
-
-
-# for i in melon_names:
-#     print_melon(melon_names[i], melon_seedlessness[i], melon_prices[i])
+        all_melons[melon][attribute] = new_fact
