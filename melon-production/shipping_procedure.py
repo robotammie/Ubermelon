@@ -3,41 +3,50 @@
 import robots
 import sys
 
-MELON_LIMIT = 200
+GOURD_LIMIT = 200
 
 
-class Melon(object):
-    """Melon."""
+class AbstractGourd(object):
+    """Superclass for melons and squash"""
 
-    def __init__(self, melon_type):
-        """Initialize melon.
+    def __init__(self, gourd_type):
+        """Initialize gourd.
 
-        melon_type: type of melon being built.
+        gourd_type: type of gourd being built.
         """
 
-        self.melon_type = melon_type
+        self.gourd_type = gourd_type
         self.weight = 0.0
         self.color = None
         self.stickers = []
 
     def prep(self):
-        """Prepare the melon."""
+        """Prepare the gourd."""
 
         robots.cleanerbot.clean(self)
         robots.stickerbot.apply_logo(self)
 
     def __str__(self):
-        """Print out information about melon."""
+        """Print out information about gourd."""
 
         if self.weight <= 0:
-            return self.melon_type
+            return self.gourd_type
         else:
             return "{} {:.2f} lbs {}".format(self.color,
                                              self.weight,
-                                             self.melon_type)
+                                             self.gourd_type)
 
 
-# FIXME: Add Squash class definition here.
+class Melon(AbstractGourd):
+    """Melon."""
+
+    pass
+
+
+class Squash(AbstractGourd):
+    """squash."""
+
+    pass
 
 
 def show_help():
@@ -84,62 +93,64 @@ def main():
     for line in f:
 
         # Each line should be in the format:
-        # <melon name>: <quantity>
-        melon_type, quantity = line.rstrip().split(':')
+        # <gourd name>: <quantity>
+        gourd_type, quantity = line.rstrip().split(':')
         quantity = int(quantity)
 
         print "\n-----"
-        print "Fullfilling order of {} {}".format(quantity, melon_type)
+        print "Fullfilling order of {} {}".format(quantity, gourd_type)
         print "-----\n"
 
         count = 0
-        melons = []
+        gourds = []
 
-        # Pick melons until we reach the requested quantity
+        # Pick gourds until we reach the requested quantity
 
-        while len(melons) < quantity:
+        while len(gourds) < quantity:
 
             # Make sure we haven't reached our limit for the total
-            # number of melons we're allowed to pick
+            # number of gourds we're allowed to pick
 
-            if count > MELON_LIMIT:
+            if count > GOURD_LIMIT:
                 print "\n------------------------------"
                 print "ALL MELONS HAVE BEEN PICKED"
                 print "ORDERS FAILED TO BE FULFILLED!"
                 print "------------------------------\n"
                 sys.exit()
 
-            # Have the robot pick a 'melon' -- check to
+            # Have the robot pick a 'gourd' -- check to
             # see if it is a Winter Squash or not.
 
-            if melon_type != "Winter Squash":
-                m = Melon(melon_type)
+            if gourd_type != "Winter Squash":
+                m = Melon(gourd_type)
+                color = "Green"
 
             else:
-                m = Squash(melon_type)
+                m = Squash(gourd_type)
+                color = "Yellow"
 
             robots.pickerbot.pick(m)
             count += 1
 
-            # Prepare the melon
+            # Prepare the gourd
             m.prep()
 
-            # Evaluate the melon
+            # Evaluate the gourd
 
-            presentable = robots.inspectorbot.evaluate(m)
+            presentable = robots.inspectorbot.evaluate(m, color)
 
             if presentable:
-                melons.append(m)
+                gourds.append(m)
 
             else:
                 robots.trashbot.trash(m)
                 continue
 
         print "------"
-        print "Robots Picked {} {} for order of {}".format(count, melon_type, quantity)
+        print "Robots Picked {} {} for order of {}".format(count, gourd_type, quantity)
 
-        # Pack the melons for shipping
-        boxes = robots.packerbot.pack(melons)
+        # Pack the gourds for shipping
+        boxes = robots.packerbot.pack(gourds)
 
         # Ship the boxes
         robots.shipperbot.ship(boxes)
