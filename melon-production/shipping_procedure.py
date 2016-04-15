@@ -123,11 +123,9 @@ def main():
 
             if gourd_type != "Winter Squash":
                 m = Melon(gourd_type)
-                color = "Green"
 
             else:
                 m = Squash(gourd_type)
-                color = "Yellow"
 
             robots.pickerbot.pick(m)
             count += 1
@@ -137,7 +135,7 @@ def main():
 
             # Evaluate the gourd
 
-            presentable = robots.inspectorbot.evaluate(m, color)
+            presentable = robots.inspectorbot.evaluate(m)
 
             if presentable:
                 gourds.append(m)

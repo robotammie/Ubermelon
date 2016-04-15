@@ -35,7 +35,7 @@ class PickerBot(Robot):
         weight = 10 * random.random()
         melon.weight = weight
 
-        if melon.gourd_type == 'Winter Squash':
+        if melon.melon_type == 'Winter Squash':
             melon.color = 'Yellow'
 
         else:
@@ -76,7 +76,7 @@ class InspectorBot(Robot):
 
     robot_name = 'InspectorBot 2000'
 
-    def evaluate(self, melon, color):
+    def evaluate(self, melon):
         """Evaluate a melon for quality. Return True if ok, False if not."""
         self.display_status("Evaluating a %s" % melon)
 
@@ -102,11 +102,11 @@ class InspectorBot(Robot):
             return False
 
         # All melons should be green!
-        if melon.color != color:
+        if melon.color != 'Green':
             self.display_status(
                 DANGER +
-                "%s is not %s!  " % (melon, color) +
-                "All melons must be %s!  REJECTED!!" % color)
+                "%s is not Green!  " % melon +
+                "All melons must be Green!  REJECTED!!")
             return False
 
         self.display_status(OK + "%s Passes" % melon)
