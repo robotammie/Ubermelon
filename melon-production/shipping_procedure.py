@@ -133,8 +133,11 @@ def main():
             # Prepare the gourd
             m.prep()
 
-            # Evaluate the gourd
+            # Paint any Squashes green
+            if gourd_type == "Winter Squash":
+                robots.painterbot.paint(m)
 
+            # Evaluate the gourd
             presentable = robots.inspectorbot.evaluate(m)
 
             if presentable:

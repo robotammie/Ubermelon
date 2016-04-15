@@ -35,7 +35,7 @@ class PickerBot(Robot):
         weight = 10 * random.random()
         melon.weight = weight
 
-        if melon.melon_type == 'Winter Squash':
+        if melon.gourd_type == 'Winter Squash':
             melon.color = 'Yellow'
 
         else:
