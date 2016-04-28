@@ -1,31 +1,27 @@
 
 // Our customers are going to buy lots of melons!
 
-var melonsToAdd = ['Ogen', 'Horned Melon', 'Watermelon', 'Casaba',
-                   'Sharlyn', 'Xigua', 'Ogen', 'Christmas', 'Christmas',
-                   'Christmas', 'Christmas', 'Watermelon', 'Sharlyn', 'Xigua',
-                   'Cantaloupe', 'Christmas', 'Watermelon', 'Christmas',
-                   'Sharlyn', 'Christmas', 'Cantaloupe', 'Casaba', 'Cantaloupe',
-                   'Santa Claus', 'Horned Melon', 'Watermelon', 'Ogen',
-                   'Horned Melon', 'Cantaloupe', 'Xigua', 'Horned Melon', 'Sharlyn',
-                   'Horned Melon', 'Sharlyn', 'Cantaloupe', 'Christmas',
-                   'Horned Melon', 'Horned Melon', 'Horned Melon', 'Xigua', 'Xigua',
-                   'Watermelon', 'Cantaloupe', 'Casaba', 'Cantaloupe', 'Casaba',
-                   'Watermelon', 'Santa Claus', 'Casaba']
+var melonsToAdd = ['Ogen', 'Horned Melon', 'Watermelon', 'Casaba', 'Sharlyn', 'Xigua', 'Ogen', 'Christmas', 'Christmas', 'Christmas', 'Christmas', 'Watermelon', 'Sharlyn', 'Xigua', 'Cantaloupe', 'Christmas', 'Watermelon', 'Christmas', 'Sharlyn', 'Christmas', 'Cantaloupe', 'Casaba', 'Cantaloupe', 'Santa Claus', 'Horned Melon', 'Watermelon', 'Ogen', 'Horned Melon', 'Cantaloupe', 'Xigua', 'Horned Melon', 'Sharlyn', 'Horned Melon', 'Sharlyn', 'Cantaloupe', 'Christmas', 'Horned Melon', 'Horned Melon', 'Horned Melon', 'Xigua', 'Xigua', 'Watermelon', 'Cantaloupe', 'Casaba', 'Cantaloupe', 'Casaba', 'Watermelon', 'Santa Claus', 'Casaba'];
 
+// why doesn't the solution function take any arguments?
+function countMelons(melonList){
+    
+    var melonCounts = {};
 
-def count_melons(melon_list):
-    """Takes in a list, and returns a dictionary with melon counts."""
+    for (var i = 0; i < melonList.length; i++) {
+        var melon = melonList[i]
 
-    melon_counts = {}
+        if (melon in melonCounts) {
+            melonCounts[melon]++;
+        }
+        else {
+            melonCounts[melon] = 1;
+        }
+    }
 
-    for melon in melon_list:
-        if melon in melon_counts:
-            melon_counts[melon] = melon_counts[melon] + 1
+    console.log(melonCounts);
 
-        else:
-            melon_counts[melon] = 1
+    return melonCounts;
+}
 
-    print melon_counts
-
-    return melon_counts
+countMelons(melonsToAdd);
